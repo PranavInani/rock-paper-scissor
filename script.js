@@ -1,67 +1,81 @@
+let playerScore = 0;
+let computerScore = 0;
+
+const result = document.querySelector('.result');
+const score = document.querySelector('.score');
+const playerImg = document.querySelector(`#player-choice`);
+const computerImg = document.querySelector(`#computer-choice`);
+const initialanim = document.querySelector('.initial-anim');
+const choicedisplay = document.querySelector('.display');
+
+
 function getComputerChoice() {
-    return Math.floor(Math.random()*3);
-
-}
-function getHumanChoice() {
-    while (true) {
-        choice = prompt("Rock, Paper or Scissor??").toLowerCase()
-        switch (choice) {
-            case "rock":
-                return 0;
-            case "paper":
-                return 1;
-            case "scissor":
-                return 2;
-            default:
-                console.log("Enter Valid Move!")
-                break;
-    }
-    }
-    
+    const Choices = ["rock", "paper", "scissors"];
+    return Choices[Math.floor(Math.random()*3)];
 }
 
+const choices = document.querySelectorAll('.choice');
 
-function playRound() {
-    const humanSel = getHumanChoice();
-    const compSel = getComputerChoice();
-    
-    whoWon = (compSel - humanSel + 3) % 3;
-    const choice = ["Rock", "Paper", "Scissor"];
-    console.log(choice[humanSel] + " vs " + choice[compSel]); 
+choices.forEach((choice) => {
+    choice.addEventListener("click", () => {
+        const playerChoice = choice.getAttribute("id");
+        playGame(playerChoice);
+    })
+})
 
-    return whoWon;
+playGame = (playerChoice) => {
+    const computerChoice = getComputerChoice();
+    const res = getWinner(playerChoice, computerChoice);
+    display(res, computerChoice, playerChoice);
 }
 
-function playGame(){
-    let humanScore = 0;
-    let compScore = 0;
-    for (let i = 0; i < 5; i++){
-        Win = playRound();
-        if(Win == 2){
-            console.log("You Win!!");
-            humanScore+=1;
-        }
-        else if (Win == 1){
-            console.log("You Lose!!");
-            compScore+=1;
-        }
-        else {
-            console.log("It's a Draw!!");
-        }
-        console.log("Current Score - You: " + humanScore + " Computer: " + compScore);
+getWinner = (playerChoice, computerChoice) => {
+    if (playerChoice === computerChoice) {
+        return "draw";
+    } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
+        return "player";
+    } else {
+        return "computer";
     }
+}
 
-    if (humanScore > compScore){
-        return "You Won!!!";
+display = (res, computerChoice, playerChoice) => {
+    displaychoice(playerChoice, computerChoice);
+
+    if (res === "player") {
+        playerScore++;
+        updatescore();
+        result.textContent = "You Win!";
     }
-    else if(humanScore < compScore){
-        return "You Lost!!!";
+    else if (res === "computer") {
+        computerScore++;
+        updatescore();
+        result.textContent = "You Lose!";
     }
     else {
-        return "It's a Draw!!!";
+        result.textContent = "It's a Draw!";
     }
+
 }
 
+displaychoice = (playerChoice, computerChoice) => {
+    initialanim.style.display = "none";
+    choicedisplay.style.display = "flex";
+    playerImg.src = `./images/${playerChoice}.png`;
+    computerImg.src = `./images/${computerChoice}.png`;
 
+}    
 
+updatescore = () => {
+    score.textContent = ` ${playerScore} : ${computerScore}`;
+}
 
+const reset = document.querySelector('.reset');
+reset.addEventListener("click", () => {
+    playerScore = 0;
+    computerScore = 0;
+    updatescore();
+    result.textContent = "May You Win!";
+    initialanim.style.display = "flex";
+    choicedisplay.style.display = "none";
+})

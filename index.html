@@ -4,12 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Rock-Paper-Scissor</title>
+    <title>Mythic Triad Arena</title>
 </head>
 <body>
-    <h1>ROCK PAPER SCISSOR</h1>
-    <p>type playGame() in console to play.</p>
-    
+    <h1>Mythic Triad Arena</h1>
+    <div class="initial-anim">
+        <div class="animation-container">
+            <img src="images/rock.png" alt="rock" class="animated-image">
+            <img src="images/paper.png" alt="paper" class="animated-image">
+            <img src="images/scissors.png" alt="scissors" class="animated-image">
+        </div>
+        <div class="versus">
+            <img src="images/vs.png" alt="versus" width="72px">
+        </div>
+        <div class="animation-container">
+            <img src="images/paper.png" alt="paper" class="animated-image">
+            <img src="images/scissors.png" alt="scissors" class="animated-image">
+            <img src="images/rock.png" alt="rock" class="animated-image">
+        </div>
+    </div>
+    <div class="display">
+        <div class="choice-display">
+            <img id="player-choice" src="images/rock.png" alt="player's choice">
+        </div>
+        <div class="versus">
+            <img src="images/vs.png" alt="versus" width="72px">
+        </div>
+        <div class="choice-display">
+            <img id="computer-choice" src="images/rock.png" alt="player's choice">
+        </div>
+    </div>
+    <div class="score">0 : 0</div>
+    <div class="reset">
+        RESET
+    </div>
+    <div class="choices">
+        <button class="choice" id="rock">
+            <img src="images/rock.png" alt="rock" height="200px">
+        </button>
+        <button class="choice" id="paper">
+            <img src="images/paper.png" alt="paper" height="200px">
+        </button>
+        <button class="choice" id="scissors">
+            <img src="images/scissors.png" alt="scissors" height="200px">
+        </button>
+    </div>
+
+    <div class="result">May You Win!</div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,107 @@
-h1 {
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+body {
+    color:rgb(158, 74, 74);
+    margin: 0;
+    padding: 0;
+    font-family: 'Tiny5', sans-serif;
+    background-color: #F2E7BB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-p {
-    font-size: large;
+h1 {
+    margin-top: 5px;
     text-align: center;
+    font-size: 4.5em;
+    margin-bottom: 15px;
+}
+
+
+.initial-anim{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.display {
+    display: none;
+    justify-content: center;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.choice-display{
+    display: flex;
+    width: 350px;
+    height: 320px;
+}
+
+.animation-container {
+    display: flex;
+    position: relative;
+    width: 350px; /* Adjust the width as needed */
+    height: 320px; 
+
+}
+
+.versus {
+    margin: 7%;
+}
+
+.animated-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fadeInOut 2s infinite; /* Adjust the duration for faster animation */
+}
+
+.animated-image:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.animated-image:nth-child(2) {
+    animation-delay: 0.67s; /* Adjust the delay for the second image */
+}
+
+.animated-image:nth-child(3) {
+    animation-delay: 1.34s; /* Adjust the delay for the third image */
+}
+
+@keyframes fadeInOut {
+    0%, 16.67% {
+        opacity: 1;
+    }
+    33.33%, 100% {
+        opacity: 0;
+    }
+    
+}
+.choices {
+    display: flex;
+    justify-content: center;
+}
+
+.choice {
+    margin: 0 5px;
+    cursor: pointer;
+
+}
+
+.score {
+    padding: 30px;
+    font-size: 5em;
+    margin-top: 10px;
+}
+
+.result {
+    font-size: 4.5em;
+    margin-top: 25px;
+}
+
+.reset {
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-bottom: 5px;
 }
